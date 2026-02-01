@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe</title>
+<link rel="stylesheet" href="Style/tictactoe.css">
+</head>
+
+<body>
+
+<!-- LEFT PLAYER PANEL -->
+<div class="side left">
+    <div class="player-label active" id="player-x">
+        <div class="player-name">Player X</div>
+        <div class="player-score" id="score-x">-</div>
+    </div>
+    <div class="player-label" id="player-o">
+        <div class="player-name">Player O</div>
+        <div class="player-score" id="score-o">-</div>
+    </div>
+</div>
+
+<!-- GAME -->
+<div class="game-container">
+
+    <h1>Tic Tac Toe</h1>
+    <div id="status">Player X's Turn</div>
+
+    <div class="board" id="board">
+        <!-- MODAL -->
+        <div id="overlay" class="overlay hidden">
+            <div class="modal">
+                <div class="winner-text" id="winner-text">Winner</div>
+                <div class="winner-symbol" id="winner-symbol">X</div>
+                <div class="draw-symbols hidden" id="draw-symbols">
+                    <span>X</span>
+                    <span>O</span>
+                </div>
+                <div class="modal-buttons">
+                    <button onclick="playAgain()">Play Again</button>
+                    <button onclick="exitGame()">Exit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="resetGame()">Reset</button>
+        <button onclick="exitGame()">Exit</button>
+    </div>
+
+</div>
+
+<!-- RIGHT PANEL - EMPTY FOR NOW -->
+<div class="side right">
+</div>
+
+<script src="JS/tictactoe.js"></script>
+
+</body>
+</html>

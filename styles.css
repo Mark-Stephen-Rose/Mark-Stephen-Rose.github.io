@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 40px;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
+}
+
+.game-container {
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.game-container:hover {
+    transform: scale(1.05);
+}
+
+img {
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.caption {
+    margin-top: 12px;
+    font-size: 20px;
+}
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+
+/* Mobile phones (portrait) */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 10px;
+    }
+    
+    h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    
+    img {
+        width: 90vw;
+        max-width: 280px;
+    }
+    
+    .caption {
+        font-size: 18px;
+    }
+}
+
+/* Tablets (portrait) */
+@media (min-width: 481px) and (max-width: 768px) {
+    h1 {
+        font-size: 40px;
+    }
+    
+    img {
+        width: 280px;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+    h1 {
+        font-size: 56px;
+    }
+    
+    img {
+        width: 350px;
+    }
+    
+    .caption {
+        font-size: 22px;
+    }
+}

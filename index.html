@@ -1,173 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Mark Rose Personal Website</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark's Silly Games</title>
+    <link rel="stylesheet" href="Style/styles.css">
 </head>
 <body>
-    <nav>
-      <div class="nav-container">
-        <div class="nav-logo"><a href="#home">Mark Stephen Rose II</a></div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#work">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
 
-    <header id="home">
-      <div class="header-container">
-        <div class="header-logo">
-          <img src="css/images/Headshot.jpg" alt="Profile Picture of Mark Rose">
-        </div>
-        <div class="header-text">
-          <h2>Hey, I'm Mark</h2>
-          <p>I am a senior Data Science major and Business minor at Stonehill College</p>
-        </div>
-      </div>
-    </header>
+    <h1>Mark's Silly Games</h1>
 
-    <main>
-      <div class = about-container>
-        <section id="about">
-          <h2>About Me</h2>
-          <p>I am a data science major and business minor at Stonehill College. I am interested in data science, 
-            machine learning, and artificial intelligence. I have experience with Python, R, SQL and multiple data 
-            visualization tools. I am passionate about using data to solve real-world problems and make informed 
-            decisions. I am also interested in the ethical implications of data science and how it can be used for 
-            social good.</p>
-          <p>I am currently looking for internships and job opportunities in the data science field. I am excited 
-            to apply my skills and knowledge to real world projects and gain valuable experience in the industry. 
-            I am a quick learner, a team player and I am eager to contribute to innovative projects that make a 
-            difference.</p>
-          <p>In my free time, I enjoy golfing, fishing, and playing my guitar. I am also an avid traveler and love 
-            exploring new places and cultures. I believe that travel broadens the mind and helps us appreciate the 
-            diversity of the world around us. Feel free to reach out to me if you have any questions or would like 
-            to connect. I am always open to networking and collaborating with like minded individuals.</p>
-        </section>
-      </div>
-      
-      <div class="work-container">
-        <section id="work">
-          <h2>Work Experience</h2>
-          <strong><a href ="https://engene.com" >enGene</a></strong>
-          <div class="job-header">
-            <p class="job-title">Data Science Intern</p>
-            <p class="job-date">June 2025 - Present</p>
-          </div>
-          <ul>
-            <li>Designed and maintained a relational database in Power BI to manage clinical trial data for 200+ patients
-            </li>
-            <li>Developed interactive dashboards to track key clinical trial metrics including Date, Data Validation, and Total Data Trackers
-            </li>
-            <li>Built comprehensive patient profiles consolidating all available trial data into clear, user-friendly dashboards
-            </li>
-          </ul>
-          <strong><a href ="https://concp.com">Constitution Capital Partners</a></strong>
-          <div class="job-header">
-            <p class="job-title">Summer Analyst</p>
-            <p class="job-date">May 2024-August 2024</p>
-          </div>
-          <ul>
-            <li>Developed and optimized a financial performance database in Power BI and Excel, consolidating 16+
-                years of quarterly data (2008-2024) to help ROI analysis and enhance investment forecasting
-            </li>
-            <li>Designed and executed financial models to assess investment viability, using sensitivity analysis to
-                guide capital allocation strategy and mitigate risk for high-value investment decisions
-            </li>
-            <li>Conducted due diligence on $90 million in potential investments, leveraging financial forecasting, 
-                risk modeling, and valuation techniques to create executive reports for the leadership team
-            </li>
-          </ul>
-          <p class="resume-link">
-            <a href="Mark Rose Resume.pdf" target="_blank">View My Full Resume</a>
-          </p>
-        </section>
-      </div>
-      
-      <div class = projects-container>
-        <section id="projects">
-          <h2>Projects</h2>
+    <div class="game-container" onclick="openGame()">
+        <img src="images/tictactoe.png" alt="Tic Tac Toe">
+        <div class="caption">Tic Tac Toe</div>
+    </div>
 
-          <div class="project-entry">
-            <div class="project-header">
-              <strong><a href="https://github.com/Mark-Stephen-Rose/ASL_Detector">ASL Detection Model</a></strong>
-              <span class="project-date">April 2025 - May 2025</span>
-            </div>
-            <ul class="project-details">
-              <li> Built and trained a high-accuracy CNN model (>99%) for American Sign Language letter recognition
-                   using a custom image dataset and data augmentation techniques
-              </li>
-              <li>Designed and deployed a real-time gesture recognition pipeline using OpenCV and TensorFlow, 
-                  enabling live ASL classification through webcam input
-              </li>
-              <li>Implemented modular, production-ready code for model training, evaluation, and inference,  
-                  optimizing model performance and system responsiveness
-              </li>
-            </ul>
-          </div>
-          <div class="project-entry">
-            <div class="project-header">
-              <strong><a href="https://github.com/Mark-Stephen-Rose/WebScraper">AI Web Scraper</a></strong>
-              <span class="project-date">October 2024 - December 2024</span>
-            </div>
-            <ul class="project-details">
-              <li>Developed an AI-powered web scraping tool using Python, automating data extraction with 
-                pagination support and saving results in JSON and CSV formats
-              </li>
-              <li>Integrated AI APIs for intelligent data extraction, enhancing accuracy and efficiency in parsing 
-                website content
-              </li>
-              <li>Built a user-friendly interface with Streamlit, enabling seamless interaction and data retrieval 
-                without coding knowledge
-              </li>
-            </ul>
-          </div>
-          
-          <div class="project-entry">
-            <div class="project-header">
-              <strong><a href="https://github.com/Mark-Stephen-Rose/Spotify-Project">Full Stack Music Streaming Application</a></strong>
-              <span class="project-date">January 2023 - May 2023</span>
-            </div>
-            <ul class="project-details">
-              <li> Built a full-stack music streaming platform using Python (Flask) for the backend and HTML, CSS, 
-                   and JavaScript for the frontend, supporting user authentication, playlist creation, and audio 
-                   streaming
-              </li>
-              <li>Designed and integrated a relational SQL database using the DAO pattern to handle complex queries
-                  for songs, albums, playlists, and user data securely and efficiently
-              </li>
-              <li>Developed interactive frontend components with JavaScript to manage real-time audio playback, 
-                  album browsing, and dynamic user interfaces connected to Spotify SDK and Spotify Web API
-              </li>
-            </ul>
-          </div>
-      </div>
+    <script src="JS/script.js"></script>
 
-      <div class="contact-outer-container">
-        <section id="contact">
-          <h2>Contact Me</h2>
-          <p>If you would like to get in touch, feel free to reach out via email or connect with me on LinkedIn or GitHub.</p>
-          <p>mrose6@students.stonehill.edu</p>
-          <div class="contact-container">
-            <a href="mailto:mrose6@students.stonehill.edu" target="_blank"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/mark-stephen-rose" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Mark-Stephen-Rose" target="_blank"><i class="fab fa-github"></i></a>
-          </div>
-        </section>
-      </div>
-    </main>
-
-  <footer>
-    <p>© 2025 Mark Rose</p>
-  </footer>
 </body>
 </html>
-
-
-
