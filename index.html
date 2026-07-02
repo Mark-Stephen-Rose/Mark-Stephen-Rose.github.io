@@ -2,199 +2,397 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mark Rose Personal Website</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/styletest.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <script>
+    // Apply saved theme/accent before paint to avoid a flash of the wrong style
+    (function () {
+      var theme = localStorage.getItem('site-theme');
+      var accent = localStorage.getItem('site-accent');
+      if (theme) document.documentElement.setAttribute('data-theme', theme);
+      if (accent) document.documentElement.setAttribute('data-accent', accent);
+    })();
+  </script>
 </head>
 <body>
-    <nav>
-      <div class="nav-container">
-        <div class="nav-logo"><a href="#home">Mark Stephen Rose II</a></div>
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo"><a href="#home" id="logoLink">Mark Rose</a></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-menu" id="navLinks">
         <ul class="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#work">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#blog">Blog</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-      </div>
-    </nav>
 
-    <header id="home">
-      <div class="header-container">
-        <div class="header-logo">
-          <img src="css/images/Headshot.jpg" alt="Profile Picture of Mark Rose">
-        </div>
-        <div class="header-text">
-          <h2>Hey, I'm Mark</h2>
-          <p>I am a senior Data Science major and Business minor at Stonehill College</p>
-        </div>
-      </div>
-    </header>
+        <div class="nav-controls">
+          <div class="theme-toggle-row">
+            <span class="control-label">Theme</span>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+              <i class="fas fa-sun"></i>
+              <i class="fas fa-moon"></i>
+              <span class="toggle-thumb"></span>
+            </button>
+          </div>
 
-    <main>
-      <div class = about-container>
-        <section id="about">
-          <h2>About Me</h2>
-          <p>I am a data science major and business minor at Stonehill College. I am interested in data science, 
-            machine learning, and artificial intelligence. I have experience with Python, R, SQL and multiple data 
-            visualization tools. I am passionate about using data to solve real-world problems and make informed 
-            decisions. I am also interested in the ethical implications of data science and how it can be used for 
-            social good.</p>
-          <p>I am currently looking for internships and job opportunities in the data science field. I am excited 
-            to apply my skills and knowledge to real-world projects and gain valuable experience in the industry. 
-            I am a quick learner, a team player and I am eager to contribute to innovative projects that make a 
-            difference.</p>
-          <p>In my free time, I enjoy golfing, fishing, and playing my guitar. I am also an avid traveler and love 
-            exploring new places and cultures. I believe that travel broadens the mind and helps us appreciate the 
-            diversity of the world around us. Feel free to reach out to me if you have any questions or would like 
-            to connect. I am always open to networking and collaborating with like-minded individuals.</p>
-        </section>
+          <div class="accent-row">
+            <span class="control-label">Accent</span>
+            <div class="swatches" id="accentSwatches">
+              <button class="swatch" data-accent="sage"   aria-label="Sage &amp; ochre accent" aria-pressed="true"></button>
+              <button class="swatch" data-accent="indigo" aria-label="Indigo &amp; rust accent" aria-pressed="false"></button>
+              <button class="swatch" data-accent="plum"   aria-label="Plum &amp; gold accent" aria-pressed="false"></button>
+              <button class="swatch" data-accent="forest" aria-label="Forest &amp; clay accent" aria-pressed="false"></button>
+              <button class="swatch" data-accent="slate"  aria-label="Slate &amp; amber accent" aria-pressed="false"></button>
+            </div>
+          </div>
+        </div>
       </div>
-      
+    </div>
+  </nav>
+
+  <header id="home">
+    <div class="header-container">
+      <div class="header-logo">
+        <img src="css/images/Headshot.jpg" alt="Profile Picture of Mark Rose">
+      </div>
+      <div class="header-text">
+        <span class="eyebrow">Data Science · Stonehill College</span>
+        <h2>Hey, I'm Mark.</h2>
+        <p>I turn messy clinical and financial data into clear decisions — currently a Programmer &amp; Clinical Data Analyst at enGene, finishing my degree in Data Science with a Business minor.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="reveal">
+      <div class="section-heading">
+        <span class="index">01</span>
+        <h2>About Me</h2>
+      </div>
+      <div class="about-container">
+        <p class="lede">I care about using data to make honest, useful decisions — and about doing it responsibly.</p>
+        <div class="about-body">
+          <p>I'm a data science major and business minor at Stonehill College, working at the intersection of statistics, engineering, and real-world impact. I work primarily in Python, R, SQL, and Power BI, and I'm especially drawn to problems where clean data pipelines directly translate into better decisions.</p>
+          <p>I'm currently looking for internships and full-time opportunities in data science, where I can keep building things that matter — from clinical trial dashboards to machine learning models — while staying mindful of the ethical questions data work always raises.</p>
+          <p>Outside of work, I'm usually golfing, fishing, playing guitar, or planning the next trip. I'm always happy to talk shop or swap recommendations — feel free to reach out.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="reveal">
+      <div class="section-heading">
+        <span class="index">02</span>
+        <h2>Experience</h2>
+      </div>
       <div class="work-container">
-        <section id="work">
-          <h2>Work Experience</h2>
-           <strong><a href ="https://engene.com" >enGene</a></strong>
+        <div class="job-block">
+          <div class="company"><a href="https://engene.com">enGene</a></div>
           <div class="job-header">
-            <p class="job-title">Programmer and Clinical Data Analyst</p>
-            <p class="job-date">May 2026 - Present</p>
+            <span class="job-title">Programmer and Clinical Data Analyst</span>
+            <span class="job-date">May 2026 – Present</span>
           </div>
           <ul>
-            <li>Develop and maintain SAS programs for data cleaning, transformation, and validation in alignment
-                with eCRF specifications, supporting the biostatistician in conducting trial analyses
-            </li>
-            <li>Lead batch review sessions using patient profile reports to drive cross-functional data cleaning
-                and discrepancy resolution
-            </li>
-            <li>Oversee Power BI dashboards and reporting, monitoring data quality, site performance, and key
-                study metrics for cross-functional stakeholders
-            </li>
+            <li>Develop and maintain SAS programs for data cleaning, transformation, and validation in alignment with eCRF specifications, supporting the biostatistician in conducting trial analyses.</li>
+            <li>Lead batch review sessions using patient profile reports to drive cross-functional data cleaning and discrepancy resolution.</li>
+            <li>Oversee Power BI dashboards and reporting, monitoring data quality, site performance, and key study metrics for cross-functional stakeholders.</li>
           </ul>
-          <div class="job-header">
-            <p class="job-title">Contractor</p>
-            <p class="job-date">August 2025 - May 2026</p>
-          </div>
-          <ul>
-            <li>Authored SAS programs to process and validate clinical datasets in accordance with eCRF
-                requirements, resolving data discrepancies across international sites
-            </li>
-            <li>Developed patient profile reports consolidating patient level data to support batch review and
-                data cleaning efforts
-            </li>
-            <li>Created Power BI reports used by study teams to track enrollment, data quality, and operational
-                KPIs in real time
-            </li>
-          </ul>
-          <div class="job-header">
-            <p class="job-title">Clinical Intern</p>
-            <p class="job-date">May 2025 - August 2025</p>
-          </div>
-          <ul>
-            <li>Built a patient visit tracker in Power BI monitoring all scheduled and completed visits,
-                projected timelines, and flagging missed visits for study teams
-            </li>
-            <li>Designed a relational database in Power BI to organize and manage clinical trial data across
-                active study sites
-            </li>
-          </ul>
-          <strong><a href ="https://concp.com" >Constitution Capital Partners</a></strong>
-          <div class="job-header">
-            <p class="job-title">Summer Analyst</p>
-            <p class="job-date">May 2024-August 2024</p>
-          </div>
-          <ul>
-            <li>Developed and optimized a financial performance database in Power BI and Excel, consolidating 16+
-                years of quarterly data (2008-2024) to help ROI analysis and enhance investment forecasting
-            </li>
-            <li>Designed and executed financial models to assess investment viability, using sensitivity analysis to
-                guide capital allocation strategy and mitigate risk for high-value investment decisions
-            </li>
-            <li>Conducted due diligence on $90 million in potential investments, leveraging financial forecasting, 
-                risk modeling, and valuation techniques to create executive reports for the leadership team
-            </li>
-          </ul>
-          <p class="resume-link">
-            <a href="Mark Rose Resume vF.pdf" target="_blank">View My Full Resume</a>
-          </p>
-        </section>
-      </div>
-      
-      <div class = projects-container>
-        <section id="projects">
-          <h2>Projects</h2>
+        </div>
 
-          <div class="project-entry">
-            <div class="project-header">
-              <strong><a href="https://github.com/Mark-Stephen-Rose/ASL_Detector">ASL Detection Model</a></strong>
-              <span class="project-date">April 2025 - May 2025</span>
-            </div>
-            <ul class="project-details">
-              <li> Built and trained a high-accuracy CNN model (>99%) for American Sign Language letter recognition
-                   using a custom image dataset and data augmentation techniques
-              </li>
-              <li>Designed and deployed a real-time gesture recognition pipeline using OpenCV and TensorFlow, 
-                  enabling live ASL classification through webcam input
-              </li>
-              <li>Implemented modular, production-ready code for model training, evaluation, and inference,  
-                  optimizing model performance and system responsiveness
-              </li>
-            </ul>
+        <div class="job-block">
+          <div class="company"><a href="https://engene.com">enGene</a></div>
+          <div class="job-header">
+            <span class="job-title">Contractor</span>
+            <span class="job-date">August 2025 – May 2026</span>
           </div>
-          <div class="project-entry">
-            <div class="project-header">
-              <strong><a href="https://github.com/Mark-Stephen-Rose/WebScraper">AI Web Scraper</a></strong>
-              <span class="project-date">October 2024 - December 2024</span>
-            </div>
-            <ul class="project-details">
-              <li>Developed an AI-powered web scraping tool using Python, automating data extraction with 
-                pagination support and saving results in JSON and CSV formats
-              </li>
-              <li>Integrated AI APIs for intelligent data extraction, enhancing accuracy and efficiency in parsing 
-                website content
-              </li>
-              <li>Built a user-friendly interface with Streamlit, enabling seamless interaction and data retrieval 
-                without coding knowledge
-              </li>
-            </ul>
-          </div>
-          
-          <div class="project-entry">
-            <div class="project-header">
-              <strong><a href="https://github.com/Mark-Stephen-Rose/Spotify-Project">Full Stack Music Streaming Application</a></strong>
-              <span class="project-date">January 2023 - May 2023</span>
-            </div>
-            <ul class="project-details">
-              <li> Built a full-stack music streaming platform using Python (Flask) for the backend and HTML, CSS, 
-                   and JavaScript for the frontend, supporting user authentication, playlist creation, and audio 
-                   streaming
-              </li>
-              <li>Designed and integrated a relational SQL database using the DAO pattern to handle complex queries
-                  for songs, albums, playlists, and user data securely and efficiently
-              </li>
-              <li>Developed interactive frontend components with JavaScript to manage real-time audio playback, 
-                  album browsing, and dynamic user interfaces connected to Spotify SDK and Spotify Web API
-              </li>
-            </ul>
-          </div>
-      </div>
+          <ul>
+            <li>Authored SAS programs to process and validate clinical datasets in accordance with eCRF requirements, resolving data discrepancies across international sites.</li>
+            <li>Developed patient profile reports consolidating patient level data to support batch review and data cleaning efforts.</li>
+            <li>Created Power BI reports used by study teams to track enrollment, data quality, and operational KPIs in real time.</li>
+          </ul>
+        </div>
 
-      <div class="contact-outer-container">
-        <section id="contact">
-          <h2>Contact Me</h2>
-          <p>If you would like to get in touch, feel free to reach out via email or connect with me on LinkedIn or GitHub.</p>
-          <p>mrose6@students.stonehill.edu</p>
-          <div class="contact-container">
-            <a href="mailto:mrose6@students.stonehill.edu" target="_blank"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/mark-stephen-rose" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Mark-Stephen-Rose" target="_blank"><i class="fab fa-github"></i></a>
+        <div class="job-block">
+          <div class="company"><a href="https://engene.com">enGene</a></div>
+          <div class="job-header">
+            <span class="job-title">Clinical Intern</span>
+            <span class="job-date">May 2025 – August 2025</span>
           </div>
-        </section>
+          <ul>
+            <li>Built a patient visit tracker in Power BI monitoring all scheduled and completed visits, projected timelines, and flagging missed visits for study teams.</li>
+            <li>Designed a relational database in Power BI to organize and manage clinical trial data across active study sites.</li>
+          </ul>
+        </div>
+
+        <div class="job-block">
+          <div class="company"><a href="https://concp.com">Constitution Capital Partners</a></div>
+          <div class="job-header">
+            <span class="job-title">Summer Analyst</span>
+            <span class="job-date">May 2024 – August 2024</span>
+          </div>
+          <ul>
+            <li>Developed and optimized a financial performance database in Power BI and Excel, consolidating 16+ years of quarterly data (2008–2024) to support ROI analysis and enhance investment forecasting.</li>
+            <li>Designed and executed financial models to assess investment viability, using sensitivity analysis to guide capital allocation strategy and mitigate risk for high-value investment decisions.</li>
+            <li>Conducted due diligence on $90 million in potential investments, leveraging financial forecasting, risk modeling, and valuation techniques to create executive reports for the leadership team.</li>
+          </ul>
+        </div>
+
+        <p class="resume-link">
+          <a href="Mark Rose Resume vF.pdf" target="_blank">View My Full Resume →</a>
+        </p>
       </div>
-    </main>
+    </section>
+
+    <section id="projects" class="reveal">
+      <div class="section-heading">
+        <span class="index">03</span>
+        <h2>Projects</h2>
+      </div>
+      <div class="projects-container">
+
+        <div class="project-entry">
+          <div class="project-header">
+            <strong><a href="https://github.com/Mark-Stephen-Rose/ASL_Detector">ASL Detection Model</a></strong>
+            <span class="project-date">April 2025 – May 2025</span>
+          </div>
+          <ul class="project-details">
+            <li>Built and trained a high-accuracy CNN model (&gt;99%) for American Sign Language letter recognition using a custom image dataset and data augmentation techniques.</li>
+            <li>Designed and deployed a real-time gesture recognition pipeline using OpenCV and TensorFlow, enabling live ASL classification through webcam input.</li>
+            <li>Implemented modular, production-ready code for model training, evaluation, and inference, optimizing model performance and system responsiveness.</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">Python</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">CNN</span>
+          </div>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-header">
+            <strong><a href="https://github.com/Mark-Stephen-Rose/WebScraper">AI Web Scraper</a></strong>
+            <span class="project-date">October 2024 – December 2024</span>
+          </div>
+          <ul class="project-details">
+            <li>Developed an AI-powered web scraping tool using Python, automating data extraction with pagination support and saving results in JSON and CSV formats.</li>
+            <li>Integrated AI APIs for intelligent data extraction, enhancing accuracy and efficiency in parsing website content.</li>
+            <li>Built a user-friendly interface with Streamlit, enabling seamless interaction and data retrieval without coding knowledge.</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">Python</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">AI APIs</span>
+          </div>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-header">
+            <strong><a href="https://github.com/Mark-Stephen-Rose/Spotify-Project">Full Stack Music Streaming Application</a></strong>
+            <span class="project-date">January 2023 – May 2023</span>
+          </div>
+          <ul class="project-details">
+            <li>Built a full-stack music streaming platform using Python (Flask) for the backend and HTML, CSS, and JavaScript for the frontend, supporting user authentication, playlist creation, and audio streaming.</li>
+            <li>Designed and integrated a relational SQL database using the DAO pattern to handle complex queries for songs, albums, playlists, and user data securely and efficiently.</li>
+            <li>Developed interactive frontend components with JavaScript to manage real-time audio playback, album browsing, and dynamic user interfaces connected to Spotify SDK and Spotify Web API.</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">Flask</span>
+            <span class="tag">SQL</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Spotify API</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="blog" class="reveal">
+      <div class="section-heading">
+        <span class="index">04</span>
+        <h2>Blog</h2>
+      </div>
+      <div class="blog-container">
+
+        <div class="blog-entry">
+          <div class="blog-header">
+            <strong><a href="#">tag title</a></strong>
+            <span class="blog-date">Coming soon</span>
+          </div>
+          <p class="blog-excerpt">Placeholder post</p>
+          <div class="tag-list">
+            <span class="tag">tag 1</span>
+            <span class="tag">tag 2</span>
+          </div>
+        </div>
+
+        <div class="blog-entry">
+          <div class="blog-header">
+            <strong><a href="#">tag title</a></strong>
+            <span class="blog-date">Coming soon</span>
+          </div>
+          <p class="blog-excerpt">Placeholder post</p>
+          <div class="tag-list">
+            <span class="tag">tag 1</span>
+            <span class="tag">tag 2</span>
+          </div>
+        </div>
+
+        <div class="blog-entry">
+          <div class="blog-header">
+            <strong><a href="#">tag title</a></strong>
+            <span class="blog-date">Coming soon</span>
+          </div>
+          <p class="blog-excerpt">Placeholder post</p>
+          <div class="tag-list">
+            <span class="tag">tag 1</span>
+            <span class="tag">tag 2</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <div class="section-heading">
+        <span class="index">05</span>
+        <h2>Get In Touch</h2>
+      </div>
+      <p>Reach out via email or connect with me on LinkedIn or GitHub — always happy to talk data science, internships, or a good round of golf.</p>
+      <p class="email">mrose6@students.stonehill.edu</p>
+      <div class="contact-container">
+        <a href="mailto:mrose6@students.stonehill.edu" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/mark-stephen-rose" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Mark-Stephen-Rose" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Mark Rose</p>
+    <p>© 2026 Mark Rose</p>
   </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // ----- Light / dark mode toggle -----
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+
+    function setTheme(theme) {
+      root.setAttribute('data-theme', theme);
+      localStorage.setItem('site-theme', theme);
+      themeToggle.setAttribute('aria-pressed', theme === 'dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Sync the toggle's visual state with whatever was applied pre-paint
+    themeToggle.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark');
+
+    // ----- Accent color picker -----
+    const swatches = document.querySelectorAll('.swatch');
+
+    function setAccent(accent) {
+      root.setAttribute('data-accent', accent);
+      localStorage.setItem('site-accent', accent);
+      swatches.forEach(sw => {
+        sw.setAttribute('aria-pressed', sw.dataset.accent === accent);
+      });
+    }
+
+    swatches.forEach(sw => {
+      sw.addEventListener('click', () => setAccent(sw.dataset.accent));
+    });
+
+    // Sync swatch highlighting with whatever was applied pre-paint
+    setAccent(root.getAttribute('data-accent') || 'sage');
+
+    // ----- Single-panel navigation -----
+    // Default state, and the state after clicking a sidebar link: only one
+    // panel is on screen (the header, or a single <main> section) and the
+    // page itself does not scroll. Clicking the "Mark Rose" logo drops out
+    // of this mode into the normal, fully scrollable page.
+    const siteHeader = document.getElementById('home');
+    const mainEl = document.querySelector('main');
+    const panelSections = document.querySelectorAll('main section');
+    const logoLink = document.getElementById('logoLink');
+    const navSectionLinks = document.querySelectorAll('.nav-links a');
+
+    function showPanel(id) {
+      document.body.classList.add('mode-panel');
+      siteHeader.classList.remove('is-active');
+      mainEl.classList.remove('has-active');
+      panelSections.forEach(sec => sec.classList.remove('is-active'));
+
+      if (id === 'home' || !id) {
+        siteHeader.classList.add('is-active');
+        return;
+      }
+
+      const target = document.getElementById(id);
+      if (!target) {
+        siteHeader.classList.add('is-active');
+        return;
+      }
+
+      mainEl.classList.add('has-active');
+      target.classList.add('is-active', 'is-visible');
+      target.scrollTop = 0;
+    }
+
+    function showFullScroll() {
+      document.body.classList.remove('mode-panel');
+      siteHeader.classList.remove('is-active');
+      mainEl.classList.remove('has-active');
+      panelSections.forEach(sec => sec.classList.remove('is-active'));
+      window.scrollTo(0, 0);
+    }
+
+    navSectionLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = link.getAttribute('href').slice(1);
+        showPanel(id);
+        navLinks.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    logoLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showFullScroll();
+      navLinks.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+
+    // Default view on page load: header only, no page scroll
+    showPanel('home');
+  </script>
 </body>
 </html>
