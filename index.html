@@ -223,13 +223,15 @@
 
     <div class="blog-entry">
       <div class="blog-header">
-        <strong><a href="#">tag title</a></strong>
-        <span class="blog-date">Coming soon</span>
+        <strong><a href="blog/frame-launcher.html">Building a Photo-First Home Screen for My TV</a></strong>
+        <span class="blog-date">October 2026</span>
       </div>
-      <p class="blog-excerpt">Placeholder post</p>
+      <p class="blog-excerpt">I wanted less clutter and fewer ads on my TV, so I built my own home screen. The interesting parts weren’t the features: they were the testing, the readability math and knowing when to stop. <a href="blog/frame-launcher.html" style="color: var(--accent);">Read the full post →</a></p>
       <div class="tag-list">
-        <span class="tag">tag 1</span>
-        <span class="tag">tag 2</span>
+        <span class="tag">Android</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Testing</span>
+        <span class="tag">Open Source</span>
       </div>
     </div>
 
@@ -393,8 +395,10 @@ logoLink.addEventListener('click', (e) => {
   navToggle.setAttribute('aria-expanded', 'false');
 });
 
-// Default view on page load: header only, no page scroll
-showPanel('home');
+// Default view on page load: header only, no page scroll.
+// A link like index.html#blog (used by the "Back to Blog" link on blog posts) opens that panel instead.
+const startEl = document.getElementById(location.hash.slice(1));
+showPanel(startEl && startEl.matches('main section') ? startEl.id : 'home');
 </script>
 
 </body>
