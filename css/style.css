@@ -9,6 +9,7 @@
   --line:      #E7DFD2;   /* hairline dividers */
   --accent:    #3F5D52;   /* deep sage — links, headings-on-hover */
   --accent-2:  #B5702F;   /* warm ochre — tags, dates */
+  --scroll-thumb: #CBBFAA; /* scrollbar thumb */
 
   --font-display: 'Fraunces', 'Georgia', serif;
   --font-body:    'Inter', sans-serif;
@@ -33,6 +34,7 @@
   --ink:     #EFE8DA;
   --muted:   #A69C8D;
   --line:    #3A342B;
+  --scroll-thumb: #4D463A;
 }
 
 [data-theme="dark"][data-accent="sage"],
@@ -50,6 +52,12 @@
 }
 
 html { scroll-behavior: smooth; }
+
+/* Thin scrollbars that follow the light/dark theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) transparent;
+}
 
 body {
   font-family: var(--font-body);

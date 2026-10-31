@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building a Photo-First Home Screen for My TV · Mark Rose</title>
+<meta name="description" content="I built a custom home screen for my TV stick to cut the clutter and the ads. The interesting parts were the testing, the readability math and knowing when to stop.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233F5D52'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%23FAF6EF'%3EMR%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+// Apply saved theme/accent before paint to avoid a flash of the wrong style
+(function () {
+  try {
+    var theme = localStorage.getItem('site-theme');
+    var accent = localStorage.getItem('site-accent');
+    if (theme) document.documentElement.setAttribute('data-theme', theme);
+    if (accent) document.documentElement.setAttribute('data-accent', accent);
+  } catch (e) {}
+})();
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <div class="nav-logo"><a href="/">Mark Rose</a></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav-menu" id="navLinks">
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#work">Experience</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <div class="nav-controls">
+        <div class="theme-toggle-row">
+          <span class="control-label">Theme</span>
+          <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+            <span class="toggle-thumb"></span>
+          </button>
+        </div>
+        <div class="accent-row">
+          <span class="control-label">Accent</span>
+          <div class="swatches" id="accentSwatches">
+            <button class="swatch" data-accent="sage" aria-label="Sage &amp; ochre accent" aria-pressed="true"></button>
+            <button class="swatch" data-accent="indigo" aria-label="Indigo &amp; rust accent" aria-pressed="false"></button>
+            <button class="swatch" data-accent="plum" aria-label="Plum &amp; gold accent" aria-pressed="false"></button>
+            <button class="swatch" data-accent="forest" aria-label="Forest &amp; clay accent" aria-pressed="false"></button>
+            <button class="swatch" data-accent="slate" aria-label="Slate &amp; amber accent" aria-pressed="false"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main>
+<article class="post">
+  <a class="post-back" href="/#blog">← Back to Blog</a>
+
+  <span class="post-meta">October 2026</span>
+  <h1>Building a Photo-First Home Screen for My TV</h1>
+  <div class="tag-list">
+    <span class="tag">Android</span>
+    <span class="tag">JavaScript</span>
+    <span class="tag">Testing</span>
+    <span class="tag">Open Source</span>
+  </div>
+
+  <p class="lede">I wanted less clutter on my TV, and I wanted using it to feel enjoyable instead of like being bombarded with ads and rows of content I never asked for.</p>
+
+  <p>So I built <strong>Frame Launcher</strong>, a home screen for Android TV streaming sticks that puts your apps over a full-screen photograph, with frosted-glass panels, an optional art mode and a clock that stays readable. It feels more like a picture frame than a store shelf.</p>
+
+  <h2>Making text readable on any photo</h2>
+  <p>A launcher is mostly text on top of a picture, and pictures are unpredictable. A bright sky behind white text is unreadable. So I measured the brightness of each of the 14 bundled wallpapers and stored a small readability profile for each one. The launcher uses it to choose light or dark text and how strongly to tint the glass panels. It’s a small feature that decides whether the whole thing feels polished or broken.</p>
+
+  <h2>Testing something with no mouse</h2>
+  <p>The interface is a web page that is driven by a TV remote. I wrote headless-browser tests that press arrow keys the way a remote would. They now cover every layout and Settings option, plus long random sequences of button presses, and they run in CI before the APK is built. That caught problems no amount of clicking around would have: a focused tile clipped at large font sizes, and an app that could end up both pinned and hidden.</p>
+  <p>Programming with clinical data got me very comfortable building checks to make sure the data in my programs is trustworthy, and I carried that habit straight into this project. I trust the unglamorous checks more than the demo.</p>
+
+  <h2>Being honest about limits</h2>
+  <p>The Home button can’t be fully taken over on this kind of device, so I used an accessibility service that returns to the launcher when the stock home screen appears. It works, but the stock screen flashes for a moment first. I documented that in the README instead of hiding it.</p>
+  <p>I also kept the app small on purpose. There are no ads, no analytics and no account, and the only network features (a VPN status pill and an update check) are off by default. I decided against weather, notifications and ads because each one would have made it heavier and less private, which is the opposite of why I started.</p>
+
+  <h2>Credit and licensing</h2>
+  <p>All 14 wallpapers are Unsplash photos, and the photographers are credited in the app’s About screen and in the repo. The code is MIT-licensed.</p>
+
+  <p class="post-end">The source, install steps and tests are on <a href="https://github.com/Mark-Stephen-Rose/FrameLauncher">GitHub</a>. <a href="/#blog">← Back to Blog</a></p>
+</article>
+</main>
+
+<footer>
+  <p>© 2026 Mark Rose</p>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('is-open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // ----- Light / dark mode toggle -----
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+
+  function setTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    try { localStorage.setItem('site-theme', theme); } catch (e) {}
+    themeToggle.setAttribute('aria-pressed', theme === 'dark');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+  themeToggle.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark');
+
+  // ----- Accent color picker -----
+  const swatches = document.querySelectorAll('.swatch');
+
+  function setAccent(accent) {
+    root.setAttribute('data-accent', accent);
+    try { localStorage.setItem('site-accent', accent); } catch (e) {}
+    swatches.forEach(sw => {
+      sw.setAttribute('aria-pressed', sw.dataset.accent === accent);
+    });
+  }
+
+  swatches.forEach(sw => {
+    sw.addEventListener('click', () => setAccent(sw.dataset.accent));
+  });
+  setAccent(root.getAttribute('data-accent') || 'sage');
+</script>
+</body>
+</html>
