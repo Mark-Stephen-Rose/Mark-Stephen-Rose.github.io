@@ -8,27 +8,32 @@
   --muted:     #6E655A;   /* warm gray for secondary text */
   --line:      #E7DFD2;   /* hairline dividers */
   --accent:    #3F5D52;   /* deep sage — links, headings-on-hover */
-  --accent-2:  #B5702F;   /* warm ochre — tags, dates */
+  --accent-2:  #9C6028;   /* warm ochre — tags, dates (4.7:1 on cream) */
   --scroll-thumb: #CBBFAA; /* scrollbar thumb */
 
   --font-display: 'Fraunces', 'Georgia', serif;
   --font-body:    'Inter', sans-serif;
   --font-mono:    'IBM Plex Mono', monospace;
+
+  color-scheme: light;
 }
 
 /* ===== Accent presets =====
    Each swatch sets a link/accent pair and a secondary tag/date accent.
-   Names describe the pairing, not just a single hue. */
-:root, [data-accent="sage"]   { --accent: #3F5D52; --accent-2: #B5702F; }
+   Names describe the pairing, not just a single hue.
+   Light-mode secondary accents are chosen to reach at least 4.5:1 contrast
+   against the cream background (WCAG AA for small text). */
+:root, [data-accent="sage"]   { --accent: #3F5D52; --accent-2: #9C6028; }
 [data-accent="indigo"]         { --accent: #3B4C6B; --accent-2: #C2492A; }
-[data-accent="plum"]           { --accent: #5B3A52; --accent-2: #C99A2E; }
+[data-accent="plum"]           { --accent: #5B3A52; --accent-2: #89691F; }
 [data-accent="forest"]         { --accent: #2E5339; --accent-2: #A65D2E; }
-[data-accent="slate"]          { --accent: #40515C; --accent-2: #B8863E; }
+[data-accent="slate"]          { --accent: #40515C; --accent-2: #8E6730; }
 
 /* ===== Dark mode =====
    Toggled via [data-theme="dark"] on <html>. Accent pairs get lightened
    per-preset so they stay legible against the dark surface. */
 [data-theme="dark"] {
+  color-scheme: dark;
   --bg:      #1C1916;
   --surface: #242019;
   --ink:     #EFE8DA;
@@ -85,6 +90,42 @@ footer,
   * { animation: none !important; transition: none !important; }
 }
 
+/* ===== Icons (SVG sprite in /css/images/icons.svg) ===== */
+.icon {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+}
+
+/* ===== Keyboard focus ===== */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Headings that receive focus from script (after a panel change) are not controls */
+[tabindex="-1"]:focus { outline: none; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ===== Sidebar Navigation ===== */
 :root {
   --sidebar-width: 240px;
@@ -96,6 +137,7 @@ nav {
   left: 0;
   width: var(--sidebar-width);
   height: 100vh;
+  height: 100dvh;
   background-color: var(--bg);
   border-right: 1px solid var(--line);
   padding: 2.5rem 2rem;
@@ -148,10 +190,17 @@ nav {
   display: block;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a:focus-visible {
   color: var(--accent);
   border-left-color: var(--accent);
   padding-left: 1.1rem;
+}
+
+/* The panel that is currently open */
+.nav-links a[aria-current="page"] {
+  color: var(--accent);
+  border-left-color: var(--accent);
 }
 
 /* Hamburger toggle — mobile only */
@@ -193,14 +242,15 @@ nav {
   justify-content: space-between;
 }
 
-.theme-toggle i {
-  font-size: 0.75rem;
+.theme-toggle .icon {
+  width: 0.85rem;
+  height: 0.85rem;
   color: var(--muted);
   position: relative;
   z-index: 1;
 }
 
-.theme-toggle .fa-sun { color: var(--accent-2); }
+.theme-toggle .icon-sun { color: var(--accent-2); }
 
 .theme-toggle .toggle-thumb {
   position: absolute;
@@ -243,11 +293,11 @@ nav {
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--ink);
 }
 
-.swatch[data-accent="sage"]   { background: linear-gradient(135deg, #3F5D52 50%, #B5702F 50%); }
+.swatch[data-accent="sage"]   { background: linear-gradient(135deg, #3F5D52 50%, #9C6028 50%); }
 .swatch[data-accent="indigo"] { background: linear-gradient(135deg, #3B4C6B 50%, #C2492A 50%); }
-.swatch[data-accent="plum"]   { background: linear-gradient(135deg, #5B3A52 50%, #C99A2E 50%); }
+.swatch[data-accent="plum"]   { background: linear-gradient(135deg, #5B3A52 50%, #89691F 50%); }
 .swatch[data-accent="forest"] { background: linear-gradient(135deg, #2E5339 50%, #A65D2E 50%); }
-.swatch[data-accent="slate"]  { background: linear-gradient(135deg, #40515C 50%, #B8863E 50%); }
+.swatch[data-accent="slate"]  { background: linear-gradient(135deg, #40515C 50%, #8E6730 50%); }
 
 /* ===== Header / Hero Section ===== */
 body {
@@ -293,9 +343,17 @@ header {
     display: block;
     background: none;
     border: none;
-    font-size: 1.3rem;
     color: var(--ink);
     cursor: pointer;
+    padding: 0.25rem;
+    /* Stay above the open drawer so the menu button doubles as its close button */
+    position: relative;
+    z-index: 2;
+  }
+
+  .nav-toggle .icon {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   .nav-menu {
@@ -305,16 +363,22 @@ header {
     width: 70%;
     max-width: 300px;
     height: 100vh;
+    height: 100dvh;
+    overflow-y: auto;
     background-color: var(--surface);
     border-left: 1px solid var(--line);
     margin-top: 0;
     padding: 5rem 2rem 2.5rem;
     gap: 2rem;
-    transition: right 0.3s ease, background-color 0.3s ease;
+    /* Hidden (not just off-screen) while closed, so keyboard focus can't enter it */
+    visibility: hidden;
+    transition: right 0.3s ease, background-color 0.3s ease, visibility 0s linear 0.3s;
   }
 
   .nav-menu.is-open {
     right: 0;
+    visibility: visible;
+    transition: right 0.3s ease, background-color 0.3s ease, visibility 0s;
   }
 
   .nav-links {
@@ -332,6 +396,7 @@ header {
 }
 
 .header-logo img {
+  display: block;
   width: 190px;
   height: 190px;
   border-radius: 50%;
@@ -354,7 +419,7 @@ header {
   margin-bottom: 0.75rem;
 }
 
-.header-text h2 {
+.header-text h1 {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 3rem;
@@ -372,7 +437,7 @@ header {
 
 @media (max-width: 640px) {
   .header-container { grid-template-columns: 1fr; text-align: center; justify-items: center; }
-  .header-text h2 { text-align: center; font-size: 2.25rem; }
+  .header-text h1 { text-align: center; font-size: 2.25rem; }
 }
 
 /* ===== Shared section scaffolding ===== */
@@ -480,6 +545,10 @@ main section {
 
 .job-block .company a:hover { color: var(--accent-2); }
 
+.job-block .role + .role {
+  margin-top: 1.75rem;
+}
+
 .job-header {
   display: flex;
   justify-content: space-between;
@@ -542,7 +611,7 @@ main section {
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 1.75rem 2rem;
-  transition: border-color 0.2s, transform 0.2s;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .project-entry:hover,
@@ -559,6 +628,13 @@ main section {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 0.85rem;
+}
+
+.project-meta {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
 }
 
 /* Project titles with no link (e.g. a private repo) */
@@ -587,6 +663,37 @@ main section {
   font-size: 0.78rem;
   color: var(--accent-2);
 }
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 0.25rem 0.65rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.share-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* A project opened from a shared link */
+.project-entry.is-targeted {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.project-entry { scroll-margin-top: 2rem; }
+
+.project-entry:focus { outline: none; }
 
 .project-note {
   color: var(--muted);
@@ -781,56 +888,51 @@ footer {
   font-size: 0.78rem;
 }
 
-/* ===== Scroll reveal ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* =========================================================
-   Single-panel navigation mode
-   Default state, and the state after clicking a sidebar link:
-   only one panel (the header, or one <main> section) is shown,
-   and the page itself does not scroll. Clicking the "Mark Rose"
-   logo drops out of this mode into the normal, fully scrollable
-   page with every section stacked.
+   Single-panel navigation
+   js/home.js adds .panel-mode to <html> (the page's <head> also adds it
+   up front so there is no flash of the stacked page). In this mode only
+   one panel is on screen at a time (the home header, or a single <main>
+   section) and the page itself does not scroll; <header> and <main> do.
+   Without JavaScript the class is never added, so every section simply
+   stacks in one normal scrolling page.
    ========================================================= */
-body.mode-panel {
+.panel-mode body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
-body.mode-panel header,
-body.mode-panel main {
+.panel-mode header,
+.panel-mode main {
   display: none;
 }
 
-body.mode-panel header.is-active {
+.panel-mode header.is-active,
+.panel-mode main.has-active {
   display: block;
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
 }
 
-body.mode-panel main.has-active {
-  display: block;
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-}
-
-body.mode-panel main section {
+.panel-mode main section {
   display: none;
 }
 
-body.mode-panel main section.is-active {
+.panel-mode main section.is-active {
   display: block;
+}
+
+/* One quiet entrance each time a panel opens (disabled by prefers-reduced-motion) */
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.panel-mode header.is-active .header-container,
+.panel-mode main section.is-active {
+  animation: panel-in 0.4s ease both;
 }
