@@ -5,29 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Building a Photo-First Home Screen for My TV · Mark Rose</title>
 <meta name="description" content="I built a custom home screen for my TV stick to cut the clutter and the ads. The interesting parts were the testing, the readability math and knowing when to stop.">
+<link rel="canonical" href="https://mark-stephen-rose.github.io/blog/frame-launcher/">
+<meta property="og:site_name" content="Mark Rose">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building a Photo-First Home Screen for My TV · Mark Rose">
+<meta property="og:description" content="I built a custom home screen for my TV stick to cut the clutter and the ads. The interesting parts were the testing, the readability math and knowing when to stop.">
+<meta property="og:url" content="https://mark-stephen-rose.github.io/blog/frame-launcher/">
+<meta property="og:image" content="https://mark-stephen-rose.github.io/css/images/Headshot.jpg">
+<meta property="og:image:alt" content="Headshot of Mark Rose">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Building a Photo-First Home Screen for My TV · Mark Rose">
+<meta name="twitter:description" content="I built a custom home screen for my TV stick to cut the clutter and the ads. The interesting parts were the testing, the readability math and knowing when to stop.">
+<meta name="twitter:image" content="https://mark-stephen-rose.github.io/css/images/Headshot.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233F5D52'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%23FAF6EF'%3EMR%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<script>
-// Apply saved theme/accent before paint to avoid a flash of the wrong style
-(function () {
-  try {
-    var theme = localStorage.getItem('site-theme');
-    var accent = localStorage.getItem('site-accent');
-    if (theme) document.documentElement.setAttribute('data-theme', theme);
-    if (accent) document.documentElement.setAttribute('data-accent', accent);
-  } catch (e) {}
-})();
-</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<script src="/js/theme-init.js"></script>
 </head>
 <body>
-
-<nav>
+<nav aria-label="Main">
   <div class="nav-container">
     <div class="nav-logo"><a href="/">Mark Rose</a></div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-      <i class="fas fa-bars"></i>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="/css/images/icons.svg#menu"/></svg>
     </button>
     <div class="nav-menu" id="navLinks">
       <ul class="nav-links">
@@ -40,20 +42,20 @@
       <div class="nav-controls">
         <div class="theme-toggle-row">
           <span class="control-label">Theme</span>
-          <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
-            <i class="fas fa-sun"></i>
-            <i class="fas fa-moon"></i>
+          <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">
+            <svg class="icon icon-sun" aria-hidden="true" focusable="false"><use href="/css/images/icons.svg#sun"/></svg>
+            <svg class="icon icon-moon" aria-hidden="true" focusable="false"><use href="/css/images/icons.svg#moon"/></svg>
             <span class="toggle-thumb"></span>
           </button>
         </div>
         <div class="accent-row">
           <span class="control-label">Accent</span>
           <div class="swatches" id="accentSwatches">
-            <button class="swatch" data-accent="sage" aria-label="Sage &amp; ochre accent" aria-pressed="true"></button>
-            <button class="swatch" data-accent="indigo" aria-label="Indigo &amp; rust accent" aria-pressed="false"></button>
-            <button class="swatch" data-accent="plum" aria-label="Plum &amp; gold accent" aria-pressed="false"></button>
-            <button class="swatch" data-accent="forest" aria-label="Forest &amp; clay accent" aria-pressed="false"></button>
-            <button class="swatch" data-accent="slate" aria-label="Slate &amp; amber accent" aria-pressed="false"></button>
+            <button class="swatch" type="button" data-accent="sage" aria-label="Sage &amp; ochre accent" aria-pressed="true"></button>
+            <button class="swatch" type="button" data-accent="indigo" aria-label="Indigo &amp; rust accent" aria-pressed="false"></button>
+            <button class="swatch" type="button" data-accent="plum" aria-label="Plum &amp; gold accent" aria-pressed="false"></button>
+            <button class="swatch" type="button" data-accent="forest" aria-label="Forest &amp; clay accent" aria-pressed="false"></button>
+            <button class="swatch" type="button" data-accent="slate" aria-label="Slate &amp; amber accent" aria-pressed="false"></button>
           </div>
         </div>
       </div>
@@ -100,45 +102,6 @@
   <p>© 2026 Mark Rose</p>
 </footer>
 
-<script>
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('is-open');
-    navToggle.setAttribute('aria-expanded', isOpen);
-  });
-
-  // ----- Light / dark mode toggle -----
-  const themeToggle = document.getElementById('themeToggle');
-  const root = document.documentElement;
-
-  function setTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    try { localStorage.setItem('site-theme', theme); } catch (e) {}
-    themeToggle.setAttribute('aria-pressed', theme === 'dark');
-  }
-
-  themeToggle.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-    setTheme(current === 'dark' ? 'light' : 'dark');
-  });
-  themeToggle.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark');
-
-  // ----- Accent color picker -----
-  const swatches = document.querySelectorAll('.swatch');
-
-  function setAccent(accent) {
-    root.setAttribute('data-accent', accent);
-    try { localStorage.setItem('site-accent', accent); } catch (e) {}
-    swatches.forEach(sw => {
-      sw.setAttribute('aria-pressed', sw.dataset.accent === accent);
-    });
-  }
-
-  swatches.forEach(sw => {
-    sw.addEventListener('click', () => setAccent(sw.dataset.accent));
-  });
-  setAccent(root.getAttribute('data-accent') || 'sage');
-</script>
+<script src="/js/site.js"></script>
 </body>
 </html>
