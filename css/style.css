@@ -553,6 +553,14 @@ main section {
   margin-bottom: 0.85rem;
 }
 
+/* Project titles with no link (e.g. a private repo) */
+.project-header strong {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
 .project-header strong a,
 .blog-header strong a {
   font-family: var(--font-display);
@@ -570,6 +578,13 @@ main section {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--accent-2);
+}
+
+.project-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-bottom: 0.85rem;
 }
 
 .project-details {
@@ -624,6 +639,88 @@ main section {
   color: var(--muted);
   font-size: 0.98rem;
   margin-bottom: 1rem;
+}
+
+.blog-excerpt .read-more {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.blog-excerpt .read-more:hover { color: var(--accent-2); }
+
+/* ===== Blog post pages (shared by every post in /blog) ===== */
+.post {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+}
+
+.post-back {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.post-meta {
+  display: block;
+  margin: 2rem 0 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+.post h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.post .tag-list {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.post h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--ink);
+  margin: 2.5rem 0 0.75rem;
+}
+
+.post p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+}
+
+.post p.lede {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
+
+.post a { color: var(--accent); }
+.post a:hover { color: var(--accent-2); }
+
+.post-end {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 640px) {
+  .post { padding: 2.5rem 1.25rem 3rem; }
+  .post h1 { font-size: 1.9rem; }
 }
 
 /* ===== Contact Section ===== */

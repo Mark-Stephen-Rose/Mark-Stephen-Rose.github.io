@@ -3,17 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mark Rose Personal Website</title>
+<title>Mark Rose · Clinical Data Programmer &amp; Analyst</title>
+<meta name="description" content="Mark Rose is a Programmer and Clinical Data Analyst at enGene and a Stonehill College data science graduate. Experience, projects, and writing.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233F5D52'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%23FAF6EF'%3EMR%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script>
 // Apply saved theme/accent before paint to avoid a flash of the wrong style
 (function () {
-  var theme = localStorage.getItem('site-theme');
-  var accent = localStorage.getItem('site-accent');
-  if (theme) document.documentElement.setAttribute('data-theme', theme);
-  if (accent) document.documentElement.setAttribute('data-accent', accent);
+  try {
+    var theme = localStorage.getItem('site-theme');
+    var accent = localStorage.getItem('site-accent');
+    if (theme) document.documentElement.setAttribute('data-theme', theme);
+    if (accent) document.documentElement.setAttribute('data-accent', accent);
+  } catch (e) {}
 })();
 </script>
 </head>
@@ -63,7 +67,7 @@
       <img src="css/images/Headshot.jpg" alt="Profile Picture of Mark Rose">
     </div>
     <div class="header-text">
-      <span class="eyebrow">Clinical Data Programmer · Data Science · Stonehill Alum</span>
+      <span class="eyebrow">Clinical Data Programmer &amp; Analyst · Data Science · Stonehill Alum</span>
       <h2>Hey, I'm Mark.</h2>
       <p> I'm a programmer who cares about building things that actually matter. </p>
     </div>
@@ -160,7 +164,8 @@
 
     <div class="project-entry">
       <div class="project-header">
-        <strong><a href="https://github.com/Mark-Stephen-Rose/ASL_Detector">ASL Detection Model</a></strong>
+        <!-- Repo is private for now. Wrap the title in a link to github.com/Mark-Stephen-Rose/ASL_Detector once it is public. -->
+        <strong>ASL Detection Model</strong>
         <span class="project-date">April 2025 – May 2025</span>
       </div>
       <ul class="project-details">
@@ -178,7 +183,8 @@
 
     <div class="project-entry">
       <div class="project-header">
-        <strong><a href="https://github.com/Mark-Stephen-Rose/WebScraper">AI Web Scraper</a></strong>
+        <!-- Repo is private for now. Wrap the title in a link to github.com/Mark-Stephen-Rose/WebScraper once it is public. -->
+        <strong>AI Web Scraper</strong>
         <span class="project-date">October 2024 – December 2024</span>
       </div>
       <ul class="project-details">
@@ -198,6 +204,7 @@
         <strong><a href="https://github.com/Mark-Stephen-Rose/Spotify-Project">Full Stack Music Streaming Application</a></strong>
         <span class="project-date">January 2023 – May 2023</span>
       </div>
+      <p class="project-note">Built for my database management systems course. I wasn't using GitHub at the time, so I uploaded the code afterward.</p>
       <ul class="project-details">
         <li>Built a full-stack music streaming platform using Python (Flask) for the backend and HTML, CSS, and JavaScript for the frontend, supporting user authentication, playlist creation, and audio streaming.</li>
         <li>Designed and integrated a relational SQL database using the DAO pattern to handle complex queries for songs, albums, playlists, and user data securely and efficiently.</li>
@@ -226,7 +233,7 @@
         <strong><a href="blog/frame-launcher.html">Building a Photo-First Home Screen for My TV</a></strong>
         <span class="blog-date">October 2026</span>
       </div>
-      <p class="blog-excerpt">I wanted less clutter and fewer ads on my TV, so I built my own home screen. The interesting parts weren’t the features: they were the testing, the readability math and knowing when to stop. <a href="blog/frame-launcher.html" style="color: var(--accent);">Read the full post →</a></p>
+      <p class="blog-excerpt">I wanted less clutter and fewer ads on my TV, so I built my own home screen. The interesting parts weren’t the features: they were the testing, the readability math and knowing when to stop. <a class="read-more" href="blog/frame-launcher.html">Read the full post →</a></p>
       <div class="tag-list">
         <span class="tag">Android</span>
         <span class="tag">JavaScript</span>
@@ -240,24 +247,12 @@
         <strong><a href="blog/holocoding.html">Building the Database Behind HoloCoding</a></strong>
         <span class="blog-date">May 2026</span>
       </div>
-      <p class="blog-excerpt">I led the database team on my senior capstone. Here is what we built, what pair programming and test-driven development taught me, and why I appreciate the great tools already out there.</p>
+      <p class="blog-excerpt">I led the database team on my senior capstone. Here is what we built, what pair programming and test-driven development taught me, and why I appreciate the great tools already out there. <a class="read-more" href="blog/holocoding.html">Read the full post →</a></p>
       <div class="tag-list">
         <span class="tag">Django</span>
         <span class="tag">PostgreSQL</span>
         <span class="tag">Testing</span>
         <span class="tag">Open Source</span>
-      </div>
-    </div>
-
-    <div class="blog-entry">
-      <div class="blog-header">
-        <strong><a href="#">tag title</a></strong>
-        <span class="blog-date">Coming soon</span>
-      </div>
-      <p class="blog-excerpt">Placeholder post</p>
-      <div class="tag-list">
-        <span class="tag">tag 1</span>
-        <span class="tag">tag 2</span>
       </div>
     </div>
 
@@ -270,10 +265,9 @@
     <h2>Get In Touch</h2>
   </div>
   <p>I'm always up for a conversation about clinical data, data science, or a good round of golf. The best ways to reach me are below.</p>
-  <!-- TODO: swap in a personal email (two spots: the line below and the mailto link) -->
-  <p class="email">mrose6@students.stonehill.edu</p>
+  <p class="email">mrosey204@gmail.com</p>
   <div class="contact-container">
-    <a href="mailto:mrose6@students.stonehill.edu" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    <a href="mailto:mrosey204@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
     <a href="https://www.linkedin.com/in/mark-stephen-rose" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     <a href="https://github.com/Mark-Stephen-Rose" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
     <a href="Mark%20Rose%20Resume%20vF.pdf" target="_blank" aria-label="Resume"><i class="fas fa-file-lines"></i></a>
@@ -311,7 +305,7 @@ const root = document.documentElement;
 
 function setTheme(theme) {
   root.setAttribute('data-theme', theme);
-  localStorage.setItem('site-theme', theme);
+  try { localStorage.setItem('site-theme', theme); } catch (e) {}
   themeToggle.setAttribute('aria-pressed', theme === 'dark');
 }
 
@@ -328,7 +322,7 @@ const swatches = document.querySelectorAll('.swatch');
 
 function setAccent(accent) {
   root.setAttribute('data-accent', accent);
-  localStorage.setItem('site-accent', accent);
+  try { localStorage.setItem('site-accent', accent); } catch (e) {}
   swatches.forEach(sw => {
     sw.setAttribute('aria-pressed', sw.dataset.accent === accent);
   });
